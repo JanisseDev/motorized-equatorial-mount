@@ -18,6 +18,7 @@ add_executable(${PROJECT_NAME}
         main.c
         dhcpserver/dhcpserver.c
         dnsserver/dnsserver.c
+        server/server.c
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -25,6 +26,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/.. # for our common lwipopts
         ${CMAKE_CURRENT_LIST_DIR}/dhcpserver
         ${CMAKE_CURRENT_LIST_DIR}/dnsserver
+        ${CMAKE_CURRENT_LIST_DIR}/server
         )
 
 target_link_libraries(${PROJECT_NAME}
