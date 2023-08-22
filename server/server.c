@@ -251,7 +251,7 @@ void key_pressed_func(void *param) {
     }
 }
 
-int serverInit() {
+int serverInit(const char *ap_name, const char *password) {
     state = calloc(1, sizeof(TCP_SERVER_T));
     if (!state) {
         DEBUG_printf("failed to allocate state\n");
@@ -263,13 +263,6 @@ int serverInit() {
     key_pressed_worker.user_data = state;
     async_context_add_when_pending_worker(cyw43_arch_async_context(), &key_pressed_worker);
     stdio_set_chars_available_callback(key_pressed_func, state);
-
-    const char *ap_name = "picow_test";
-#if 1
-    const char *password = "password";
-#else
-    const char *password = NULL;
-#endif
 
     cyw43_arch_enable_ap_mode(ap_name, password, CYW43_AUTH_WPA2_AES_PSK);
 
