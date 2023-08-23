@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+// This template is based on the "access_point" exemple from https://github.com/raspberrypi/pico-examples/tree/master/pico_w/wifi/access_point
+
 #include "server.h"
 
 int main() {
@@ -14,14 +16,19 @@ int main() {
         return 1;
     }
     
+    // You can setup your access point name & password here
     int serverInitResult = serverInit("picow_test", "password");
     if(serverInitResult != 0) {
         return serverInitResult;
     }
 
+    // Edit the webpage.c file to change your web content
+
+    // New way to light the onboard led
     cyw43_gpio_set(&cyw43_state, 0, true);
     
     while(!state->complete) {
+        // Do your usual pico stuff here
         sleep_ms(1000);
     }
 
