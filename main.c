@@ -17,7 +17,7 @@ int main() {
     }
     
     // You can setup your access point name & password here
-    int serverInitResult = serverInit("picow_test", "password");
+    int serverInitResult = serverInit("equatorial mount", "polar-star");
     if(serverInitResult != 0) {
         return serverInitResult;
     }

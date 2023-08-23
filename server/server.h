@@ -17,6 +17,7 @@
 #define DEBUG_printf printf
 #define POLL_TIME_S 5
 #define HTTP_GET "GET"
+#define PAGE_MAX_SIZE 2048
 
 typedef struct TCP_SERVER_T_ {
     struct tcp_pcb *server_pcb;
@@ -29,7 +30,7 @@ typedef struct TCP_CONNECT_STATE_T_ {
     struct tcp_pcb *pcb;
     int sent_len;
     char headers[128];
-    char result[256];
+    char result[PAGE_MAX_SIZE];
     int header_len;
     int result_len;
     ip_addr_t *gw;

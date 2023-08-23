@@ -24,9 +24,9 @@ int page_content(const char *request, const char *params, char *result, size_t m
         }
         // Generate result
         if (led_state) {
-            len = snprintf(result, max_result_len, LED_TEST_BODY, "ON", 0, "OFF");
+            len = snprintf(result, max_result_len, HTML_PAGE, "ON", 0, "OFF");
         } else {
-            len = snprintf(result, max_result_len, LED_TEST_BODY, "OFF", 1, "ON");
+            len = snprintf(result, max_result_len, HTML_PAGE, "OFF", 1, "ON");
         }
     }
     return len;
