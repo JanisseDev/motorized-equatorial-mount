@@ -19,6 +19,7 @@ add_executable(${PROJECT_NAME}
         dhcpserver/dhcpserver.c
         dnsserver/dnsserver.c
         server/server.c
+        server/webpage.c
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
