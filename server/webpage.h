@@ -34,15 +34,6 @@
 
 #define HTML_PAGE "<html>" HTML_HEAD HTML_BODY "</html>"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
 int page_content(const char *request, const char *params, char *result);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif
