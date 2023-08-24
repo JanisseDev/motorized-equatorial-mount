@@ -149,7 +149,7 @@ static err_t tcp_server_accept(void *arg, struct tcp_pcb *client_pcb, err_t err)
     DEBUG_printf("client connected\n");
 
     // Create the state for the connection
-    TCP_CONNECT_STATE_T *con_state = calloc(1, sizeof(TCP_CONNECT_STATE_T));
+    TCP_CONNECT_STATE_T *con_state = new TCP_CONNECT_STATE_T();
     if (!con_state) {
         DEBUG_printf("failed to allocate connect state\n");
         return ERR_MEM;
@@ -221,7 +221,7 @@ void key_pressed_func(void *param) {
 }
 
 int serverInit(const char *ap_name, const char *password) {
-    state = calloc(1, sizeof(TCP_SERVER_T));
+    state = new TCP_SERVER_T();
     if (!state) {
         DEBUG_printf("failed to allocate state\n");
         return 1;

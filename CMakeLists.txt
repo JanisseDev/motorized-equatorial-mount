@@ -10,15 +10,17 @@ set(PROJECT_NAME motorized_equatorial_mount)
 project(${PROJECT_NAME} C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
+set(PICO_CXX_ENABLE_EXCEPTIONS 1)
+set(PICO_CXX_ENABLE_RTTI 1)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 add_executable(${PROJECT_NAME}
         main.cpp
-        dhcpserver/dhcpserver.c
-        dnsserver/dnsserver.c
-        server/server.c
+        dhcpserver/dhcpserver.cpp
+        dnsserver/dnsserver.cpp
+        server/server.cpp
         server/webpage.cpp
         )
 

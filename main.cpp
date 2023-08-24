@@ -5,10 +5,8 @@
  */
 
 // This template is based on the "access_point" exemple from https://github.com/raspberrypi/pico-examples/tree/master/pico_w/wifi/access_point
-extern "C" {
-    #include "server.h"
 
-}
+#include "server.h"
 
 uint32_t blinkInterval = 500;
 
