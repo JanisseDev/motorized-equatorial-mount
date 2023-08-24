@@ -1,9 +1,15 @@
 #include "webpage.h"
 #include "server.h"
 
-int page_content(const char *request, const char *params, char *result, size_t max_result_len) {
+const char* cellHtml = "\
+<div class='cell'>\
+    <p>Led is %s</p>\
+    <a href='?led=%d'>Turn led %s</a>\
+</div>";
+
+int page_content(const char *request, const char *params, char *result) {
     int len = 0;
-    if (strncmp(request, LED_TEST, sizeof(LED_TEST) - 1) == 0) {
+    if (strncmp(request, INDEX_PATH, sizeof(INDEX_PATH) - 1) == 0) {
         // Get the state of the led
         bool value;
         cyw43_gpio_get(&cyw43_state, LED_GPIO, &value);
@@ -22,12 +28,18 @@ int page_content(const char *request, const char *params, char *result, size_t m
                 }
             }
         }
+
         // Generate result
+
+        char generatedHtml[strlen(cellHtml)];
+        
         if (led_state) {
-            len = snprintf(result, max_result_len, HTML_PAGE, "ON", 0, "OFF");
+            sprintf(generatedHtml, cellHtml, "ON", 0, "OFF");
         } else {
-            len = snprintf(result, max_result_len, HTML_PAGE, "OFF", 1, "ON");
+            sprintf(generatedHtml, cellHtml, "OFF", 1, "ON");
         }
+
+        len = sprintf(result, HTML_PAGE, generatedHtml);
     }
     return len;
 }

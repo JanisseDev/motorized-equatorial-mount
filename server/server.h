@@ -44,7 +44,7 @@ err_t tcp_server_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
 void key_pressed_worker_func(async_context_t *context, async_when_pending_worker_t *worker);
 void key_pressed_func(void *param);
 
-int serverInit();
+int serverInit(const char *ap_name, const char *password);
 void serverDeinit();
 
 #endif

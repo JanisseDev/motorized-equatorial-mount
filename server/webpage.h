@@ -4,12 +4,10 @@
 #include "pico/stdlib.h"
 
 #define HTTP_RESPONSE_HEADERS "HTTP/1.1 %d OK\nContent-Length: %d\nContent-Type: text/html; charset=utf-8\nConnection: close\n\n"
+#define INDEX_PATH "/index"
 #define LED_PARAM "led=%d"
-#define LED_TEST "/ledtest"
 #define LED_GPIO 0
-#define HTTP_RESPONSE_REDIRECT "HTTP/1.1 302 Redirect\nLocation: http://%s" LED_TEST "\n\n"
-
-#define HTML_PAGE "<html>"HTML_HEAD HTML_BODY"</html>"
+#define HTTP_RESPONSE_REDIRECT "HTTP/1.1 302 Redirect\nLocation: http://%s" INDEX_PATH "\n\n"
 
 #define HTML_HEAD "\
 <head>\
@@ -30,14 +28,21 @@
 #define HTML_BODY "\
 <body>\
     <h1 id='title'>Motorized equatorial mount</h1>\
-    <div class='grid'>\
-        <div class='cell'>\
-            <p>Led is %s</p>\
-            <a href='?led=%d'>Turn led %s</a>\
-        </div>\
+    <div class='grid'>%s</div>\
     </div>\
 </body>"
 
-extern int page_content(const char *request, const char *params, char *result, size_t max_result_len);
+#define HTML_PAGE "<html>" HTML_HEAD HTML_BODY "</html>"
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+int page_content(const char *request, const char *params, char *result);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

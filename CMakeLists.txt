@@ -15,11 +15,11 @@ set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
 add_executable(${PROJECT_NAME}
-        main.c
+        main.cpp
         dhcpserver/dhcpserver.c
         dnsserver/dnsserver.c
         server/server.c
-        server/webpage.c
+        server/webpage.cpp
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
