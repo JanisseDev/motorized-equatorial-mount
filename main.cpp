@@ -31,9 +31,9 @@ int main() {
     
     while(!state->complete) {
         // Do your usual pico stuff here
-        cyw43_gpio_set(&cyw43_state, 0, true);
-        sleep_ms(blinkInterval);
-        cyw43_gpio_set(&cyw43_state, 0, true);
+        //cyw43_gpio_set(&cyw43_state, 0, true);
+        //sleep_ms(blinkInterval);
+        //cyw43_gpio_set(&cyw43_state, 0, true);
         sleep_ms(blinkInterval);
     }
 

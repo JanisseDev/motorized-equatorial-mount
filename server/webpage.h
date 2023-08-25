@@ -1,6 +1,9 @@
 #ifndef WEBPAGE_H
 #define WEBPAGE_H
 
+#include <string>
+#include <vector>
+
 #include "pico/stdlib.h"
 
 #define HTTP_RESPONSE_HEADERS "HTTP/1.1 %d OK\nContent-Length: %d\nContent-Type: text/html; charset=utf-8\nConnection: close\n\n"

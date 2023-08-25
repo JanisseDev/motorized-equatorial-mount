@@ -1,12 +1,6 @@
 #include "webpage.h"
 #include "server.h"
 
-const char* cellHtml = "\
-<div class='cell'>\
-    <p>Led is %s</p>\
-    <a href='?led=%d'>Turn led %s</a>\
-</div>";
-
 int page_content(const char *request, const char *params, char *result) {
     int len = 0;
     if (strncmp(request, INDEX_PATH, sizeof(INDEX_PATH) - 1) == 0) {
@@ -30,16 +24,20 @@ int page_content(const char *request, const char *params, char *result) {
         }
 
         // Generate result
-
-        char generatedHtml[strlen(cellHtml)];
-        
+        std::vector<std::string> args;
         if (led_state) {
-            sprintf(generatedHtml, cellHtml, "ON", 0, "OFF");
+            args = {"ON", "0", "OFF"};
         } else {
-            sprintf(generatedHtml, cellHtml, "OFF", 1, "ON");
+            args = {"OFF", "1", "ON"};
         }
 
-        len = sprintf(result, HTML_PAGE, generatedHtml);
+        const std::string generatedHtml = "\
+<div class='cell'>\
+    <p>Led is " + args[0] + "</p>\
+    <a href='?led=" + args[1] + "'>Turn led " + args[2] + "</a>\
+</div>";
+
+        len = sprintf(result, HTML_PAGE, generatedHtml.c_str());
     }
     return len;
 }
