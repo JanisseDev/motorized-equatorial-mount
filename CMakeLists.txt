@@ -22,6 +22,7 @@ add_executable(${PROJECT_NAME}
         dnsserver/dnsserver.cpp
         server/server.cpp
         server/webpage.cpp
+        server/ControlComponents/LedControlComponent.cpp
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -30,6 +31,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/dhcpserver
         ${CMAKE_CURRENT_LIST_DIR}/dnsserver
         ${CMAKE_CURRENT_LIST_DIR}/server
+        ${CMAKE_CURRENT_LIST_DIR}/server/ControlComponents
         )
 
 target_link_libraries(${PROJECT_NAME}
