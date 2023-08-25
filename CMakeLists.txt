@@ -23,6 +23,7 @@ add_executable(${PROJECT_NAME}
         server/server.cpp
         server/webpage.cpp
         server/ControlComponents/LedControlComponent.cpp
+        server/ControlComponents/MotorSpeedControlComponent.cpp
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

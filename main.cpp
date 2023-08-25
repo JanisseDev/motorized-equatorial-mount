@@ -6,9 +6,8 @@
 
 // This template is based on the "access_point" exemple from https://github.com/raspberrypi/pico-examples/tree/master/pico_w/wifi/access_point
 
+#include "controlVariables.h"
 #include "server.h"
-
-uint32_t blinkInterval = 500;
 
 int main() {
     stdio_init_all();
@@ -31,10 +30,11 @@ int main() {
     
     while(!state->complete) {
         // Do your usual pico stuff here
-        //cyw43_gpio_set(&cyw43_state, 0, true);
-        //sleep_ms(blinkInterval);
-        //cyw43_gpio_set(&cyw43_state, 0, true);
+        cyw43_gpio_set(&cyw43_state, 0, true);
         sleep_ms(blinkInterval);
+        cyw43_gpio_set(&cyw43_state, 0, false);
+        sleep_ms(blinkInterval);
+        blinkInterval += 10;
     }
 
     serverDeinit();
