@@ -9,6 +9,8 @@
 #include "controlVariables.h"
 #include "server.h"
 
+volatile uint32_t blinkInterval = 100;
+
 int main() {
     stdio_init_all();
     
@@ -34,7 +36,6 @@ int main() {
         sleep_ms(blinkInterval);
         cyw43_gpio_set(&cyw43_state, 0, false);
         sleep_ms(blinkInterval);
-        blinkInterval += 10;
     }
 
     serverDeinit();

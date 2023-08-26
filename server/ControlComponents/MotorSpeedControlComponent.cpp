@@ -9,8 +9,8 @@ class MotorSpeedControlComponent {
      static std::string generate_content(std::vector<std::string> args) {
         return "\
 <div class='cell'>\
-    <p>Motor interval is " + args[0] + "</p>\
-    <a href='?motorInterval=" + args[1] + "'>" + args[1] + "</a>\
+    <p>Motor interval is "+args[0]+"</p>\
+    <a href='?motorInterval="+args[1]+"'>"+args[1]+"</a>\
 </div>";
     }
 
@@ -20,9 +20,9 @@ class MotorSpeedControlComponent {
         // Generate result
         std::vector<std::string> args;
         if (blinkInterval == 100) {
-            args = {blinkInterval, "500"};
+            args = {std::to_string(blinkInterval), "500"};
         } else {
-            args = {blinkInterval, "100"};
+            args = {std::to_string(blinkInterval), "100"};
         }
 
         return generate_content(args);

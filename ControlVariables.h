@@ -2,4 +2,4 @@
 
 #include "pico/stdlib.h"
 
-static uint32_t blinkInterval = 100;
+extern volatile uint32_t blinkInterval;
