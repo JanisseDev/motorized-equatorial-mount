@@ -4,23 +4,23 @@
 #include "server.h"
 #include "controlVariables.h"
 
-class MotorSpeedControlComponent {
+class BlinkSpeedControlComponent {
 private:
     static std::string generate_content(std::vector<std::string> args) {
         return "\
 <div class='cell'>\
-    <p>Motor interval is "+args[0]+"</p>\
-    <a href='?motorInterval="+args[1]+"'>"+args[1]+"</a>\
+    <p>Blink speed is "+args[0]+"ms</p>\
+    <a href='?blinkSpeed="+args[1]+"'>Switch to "+args[1]+"ms</a>\
 </div>";
     }
 
 public:
     static void check_params(const char *params)
     {
-        uint32_t motorInterval;
-        int motorInterval_param = sscanf(params, "motorInterval=%d", &motorInterval);
-        if (motorInterval_param == 1) {
-            blinkInterval = motorInterval;
+        uint32_t blinkSpeedValue;
+        int blinkSpeed_param = sscanf(params, "blinkSpeed=%d", &blinkSpeedValue);
+        if (blinkSpeed_param == 1) {
+            blinkSpeed = blinkSpeedValue;
         }
     }
 
@@ -28,10 +28,10 @@ public:
     {   
         // Generate result
         std::vector<std::string> args;
-        if (blinkInterval == 100) {
-            args = {std::to_string(blinkInterval), "500"};
+        if (blinkSpeed == 100) {
+            args = {std::to_string(blinkSpeed), "500"};
         } else {
-            args = {std::to_string(blinkInterval), "100"};
+            args = {std::to_string(blinkSpeed), "100"};
         }
 
         return generate_content(args);

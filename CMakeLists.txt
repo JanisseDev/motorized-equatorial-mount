@@ -22,8 +22,8 @@ add_executable(${PROJECT_NAME}
         dnsserver/dnsserver.cpp
         server/server.cpp
         server/webpage.cpp
-        server/ControlComponents/LedControlComponent.cpp
-        server/ControlComponents/MotorSpeedControlComponent.cpp
+        server/ControlComponents/BlinkingControlComponent.cpp
+        server/ControlComponents/BlinkSpeedControlComponent.cpp
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

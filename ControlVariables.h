@@ -2,4 +2,5 @@
 
 #include "pico/stdlib.h"
 
-extern volatile uint32_t blinkInterval;
+extern volatile bool blinking;
+extern volatile uint32_t blinkSpeed;

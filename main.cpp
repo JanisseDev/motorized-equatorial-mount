@@ -9,7 +9,8 @@
 #include "controlVariables.h"
 #include "server.h"
 
-volatile uint32_t blinkInterval = 100;
+volatile bool blinking = false;
+volatile uint32_t blinkSpeed = 100;
 
 int main() {
     stdio_init_all();
@@ -32,10 +33,15 @@ int main() {
     
     while(!state->complete) {
         // Do your usual pico stuff here
-        cyw43_gpio_set(&cyw43_state, 0, true);
-        sleep_ms(blinkInterval);
-        cyw43_gpio_set(&cyw43_state, 0, false);
-        sleep_ms(blinkInterval);
+        if(blinking) {
+            cyw43_gpio_set(&cyw43_state, 0, true);
+            sleep_ms(blinkSpeed);
+            cyw43_gpio_set(&cyw43_state, 0, false);
+            sleep_ms(blinkSpeed);
+        } else {
+            cyw43_gpio_set(&cyw43_state, 0, true);
+            sleep_ms(10);
+        }
     }
 
     serverDeinit();
