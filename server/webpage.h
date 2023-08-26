@@ -8,8 +8,6 @@
 
 #define HTTP_RESPONSE_HEADERS "HTTP/1.1 %d OK\nContent-Length: %d\nContent-Type: text/html; charset=utf-8\nConnection: close\n\n"
 #define INDEX_PATH "/index"
-#define LED_PARAM "led=%d"
-#define LED_GPIO 0
 #define HTTP_RESPONSE_REDIRECT "HTTP/1.1 302 Redirect\nLocation: http://%s" INDEX_PATH "\n\n"
 
 #define HTML_HEAD "\
