@@ -21,10 +21,10 @@ private:
 public:
     static void check_params(const char *params)
     {
-        int blinkingValue;
-        int blinking_param = sscanf(params, "blinking=%d", &blinkingValue);
-        if (blinking_param == 1) {
-            blinking = blinkingValue;
+        int value;
+        int matchCount = sscanf(params, "blinking=%d", &value);
+        if (matchCount == 1) {
+            blinking = value;
         }
     }
 

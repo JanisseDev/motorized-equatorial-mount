@@ -25,10 +25,10 @@ private:
 public:
     static void check_params(const char *params)
     {
-        uint32_t blinkSpeedValue;
-        int blinkSpeed_param = sscanf(params, "blinkSpeed=%d", &blinkSpeedValue);
-        if (blinkSpeed_param == 1) {
-            blinkSpeed = blinkSpeedValue;
+        uint32_t value;
+        int matchCount = sscanf(params, "blinkSpeed=%d", &value);
+        if (matchCount == 1) {
+            blinkSpeed = value;
         }
     }
 
