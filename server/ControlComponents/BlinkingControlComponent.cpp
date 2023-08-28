@@ -6,13 +6,14 @@
 
 class BlinkingControlComponent {
 private:
-    static std::string generate_content(std::vector<std::string> args) {
+    static std::string generate_content(int selectedOption) {
+        const std::string selectedClass = "class='selected'";
         return "\
 <div class='cell'>\
     <p>LED</p>\
     <div class='switch'>\
-        <a "+args[0]+" href='?blinking=0'>Fix</a>\
-        <a "+args[1]+" href='?blinking=1'>Blink</a>\
+        <a "+((selectedOption==0)?selectedClass:"")+" href='?blinking=0'>Fix</a>\
+        <a "+((selectedOption==1)?selectedClass:"")+" href='?blinking=1'>Blink</a>\
     </div>\
 </div>";
     }
@@ -30,13 +31,6 @@ public:
     static std::string html_content()
     {
         // Generate result
-        std::vector<std::string> args;
-        if (blinking) {
-            args = {"", "class='selected'"};
-        } else {
-            args = {"class='selected'", ""};
-        }
-        
-        return generate_content(args);
+        return generate_content(blinking ? 1 : 0);
     }
 };

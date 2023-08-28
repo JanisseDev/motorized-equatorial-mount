@@ -16,16 +16,18 @@
     <title>Equatorial mount</title>\
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>\
     <style>\
-        body                {background-color: rgb(42, 0, 0);}\
-        h1, p, a            {color: rgb(223, 143, 143); margin: 0; padding: 0; text-decoration: none;}\
-        h1                  {text-align: center; font-size: 20px;}\
-        #title              {margin: 20px;}\
-        p                   {font-size: 16px;}\
-        .grid               {display: flex; flex-wrap: wrap; gap: 8px;}\
-        .cell               {display: flex; padding: 12px; min-height: 80px; min-width: 80px; justify-content: center; flex-direction: column; align-items: center; flex-grow: 1; gap: 4px; border-width: 1px; border-color: rgb(133, 77, 77); border-style: solid; border-radius: 8px;}\
-        .switch             {display: flex; flex-direction: row; border-width: 0.5px; border-color: rgb(110, 0, 0); border-style: solid; border-radius: 4px;}\
-        .switch *           {padding: 4px;}\
-        .switch .selected   {background-color: rgb(110, 0, 0); border-radius: 3px;}\
+        body                        {background-color: rgb(42, 0, 0);}\
+        h1, p, a                    {color: rgb(223, 143, 143); margin: 0; padding: 0; text-decoration: none;}\
+        h1                          {text-align: center; font-size: 20px;}\
+        #title                      {margin: 20px;}\
+        p                           {font-size: 16px;}\
+        .grid                       {display: flex; flex-wrap: wrap; gap: 8px;}\
+        .cell                       {display: flex; padding: 12px; min-height: 80px; min-width: 80px; justify-content: center; flex-direction: column; align-items: center; flex-grow: 1; gap: 4px; border-width: 1px; border-color: rgb(133, 77, 77); border-style: solid; border-radius: 8px;}\
+        .switch                     {display: flex; flex-direction: row; border-width: 0.5px; border-color: rgb(110, 0, 0); border-style: solid; border-radius: 4px;}\
+        .switch *                   {padding: 4px;}\
+        .switch .selected           {background-color: rgb(110, 0, 0); border-radius: 3px;}\
+        input                       {background-color: rgb(110, 0, 0); color: rgb(223, 143, 143); margin: 0px; padding: 6px; border-radius: 3px; border: none;}\
+        input[type=number]          {position: relative; background-color: transparent; border-radius: 0px; border-bottom: 0.5px solid rgb(110, 0, 0);}\
     </style>\
 </head>"
 

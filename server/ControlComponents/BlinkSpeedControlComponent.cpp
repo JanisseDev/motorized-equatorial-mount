@@ -6,15 +6,19 @@
 
 class BlinkSpeedControlComponent {
 private:
-    static std::string generate_content(std::vector<std::string> args) {
+    static std::string generate_content(uint32_t currentValue) {
         return "\
 <div class='cell'>\
     <p>Blink speed</p>\
-    <div class='switch'>\
-        <a "+args[0]+" href='?blinkSpeed=100'>100ms</a>\
-        <a "+args[1]+" href='?blinkSpeed=250'>250ms</a>\
-        <a "+args[2]+" href='?blinkSpeed=500'>500ms</a>\
-    </div>\
+    <form>\
+        <input type='number' name='blinkSpeed' list='blinkSpeedDefaultNumbers' style='width: 100px;' value='"+std::to_string(currentValue)+"' min='50'/>\
+        <datalist id='blinkSpeedDefaultNumbers'>\
+            <option value='100'></option>\
+            <option value='250'></option>\
+            <option value='500'></option>\
+        </datalist>\
+        <input type='submit' value='Send'/>\
+    </form>\
 </div>";
     }
 
@@ -29,16 +33,8 @@ public:
     }
 
     static std::string html_content()
-    {   
+    {
         // Generate result
-        std::vector<std::string> args;
-        switch (blinkSpeed) {
-            case 100: args = {"class='selected'", "", ""}; break;
-            case 250: args = {"", "class='selected'", ""}; break;
-            case 500: args = {"", "", "class='selected'"}; break;
-            default: args = {"", "", ""}; break;
-        }
-
-        return generate_content(args);
+        return generate_content(blinkSpeed);
     }
 };
