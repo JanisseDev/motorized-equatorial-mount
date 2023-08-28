@@ -4,7 +4,7 @@
 #include "BlinkingControlComponent.cpp"
 #include "BlinkSpeedControlComponent.cpp"
 
-int page_content(const char *request, const char *params, char *result) {
+int page_content(const char *request, const char *params, std::string *result) {
     int len = 0;
     if (strncmp(request, INDEX_PATH, sizeof(INDEX_PATH) - 1) == 0) {
         // See if the user changed it
@@ -14,9 +14,10 @@ int page_content(const char *request, const char *params, char *result) {
         }
 
         // Generate result
-        const std::string generatedHtml = BlinkingControlComponent::html_content() + BlinkSpeedControlComponent::html_content();
-
-        len = sprintf(result, HTML_PAGE, generatedHtml.c_str());
+        result->clear();
+        *result += HTML_HEAD + HTML_START;
+        *result += BlinkingControlComponent::html_content() + BlinkSpeedControlComponent::html_content();
+        *result += HTML_END;
     }
     return len;
 }

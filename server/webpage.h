@@ -10,7 +10,7 @@
 #define INDEX_PATH "/index"
 #define HTTP_RESPONSE_REDIRECT "HTTP/1.1 302 Redirect\nLocation: http://%s" INDEX_PATH "\n\n"
 
-#define HTML_HEAD "\
+const std::string HTML_HEAD = "\
 <head>\
     <meta charset='utf-8' />\
     <title>Equatorial mount</title>\
@@ -29,17 +29,19 @@
         input                       {background-color: rgb(110, 0, 0); color: rgb(223, 143, 143); margin: 0px; padding: 6px; border-radius: 3px; border: none;}\
         input[type=number]          {position: relative; background-color: transparent; border-radius: 0px; border-bottom: 0.5px solid rgb(110, 0, 0);}\
     </style>\
-</head>"
+</head>";
 
-#define HTML_BODY "\
-<body>\
-    <h1 id='title'>Motorized equatorial mount</h1>\
-    <div class='grid'>%s</div>\
-    </div>\
-</body>"
+const std::string HTML_START = "\
+<html>\
+    <body>\
+        <h1 id='title'>Motorized equatorial mount</h1>\
+        <div class='grid'>";
 
-#define HTML_PAGE "<html>" HTML_HEAD HTML_BODY "</html>"
+const std::string HTML_END = "\
+        </div>\
+    </body>\
+</html>";
 
-int page_content(const char *request, const char *params, char *result);
+int page_content(const char *request, const char *params, std::string *result);
 
 #endif

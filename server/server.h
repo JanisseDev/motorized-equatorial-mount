@@ -1,6 +1,7 @@
 #ifndef SERVER_H
 #define SERVER_H
 
+#include <string>
 #include <string.h>
 
 #include "pico/cyw43_arch.h"
@@ -30,9 +31,8 @@ typedef struct TCP_CONNECT_STATE_T_ {
     struct tcp_pcb *pcb;
     int sent_len;
     char headers[128];
-    char result[PAGE_MAX_SIZE];
+    std::string result;
     int header_len;
-    int result_len;
     ip_addr_t *gw;
 } TCP_CONNECT_STATE_T;
 

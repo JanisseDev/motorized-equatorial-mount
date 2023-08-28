@@ -37,7 +37,7 @@ static err_t tcp_server_sent(void *arg, struct tcp_pcb *pcb, u16_t len) {
     TCP_CONNECT_STATE_T *con_state = (TCP_CONNECT_STATE_T*)arg;
     DEBUG_printf("tcp_server_sent %u\n", len);
     con_state->sent_len += len;
-    if (con_state->sent_len >= con_state->header_len + con_state->result_len) {
+    if (con_state->sent_len >= con_state->header_len + con_state->result.length()) {
         DEBUG_printf("all done\n");
         return tcp_close_client_connection(con_state, pcb, ERR_OK);
     }
@@ -78,20 +78,14 @@ err_t tcp_server_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
             }
 
             // Generate content
-            con_state->result_len = page_content(request, params, con_state->result);
-            DEBUG_printf("Request: %s?%s\n", request, params);
-            DEBUG_printf("Result: %d\n", con_state->result_len);
-
-            // Check we had enough buffer space
-            if (con_state->result_len > sizeof(con_state->result) - 1) {
-                DEBUG_printf("Too much result data %d\n", con_state->result_len);
-                return tcp_close_client_connection(con_state, pcb, ERR_CLSD);
-            }
+            page_content(request, params, &con_state->result);
+            //DEBUG_printf("Request: %s?%s\n", request, params);
+            //DEBUG_printf("Result: %s\n", con_state->result);
 
             // Generate web page
-            if (con_state->result_len > 0) {
+            if (con_state->result.length() > 0) {
                 con_state->header_len = snprintf(con_state->headers, sizeof(con_state->headers), HTTP_RESPONSE_HEADERS,
-                    200, con_state->result_len);
+                    200, con_state->result.length()+1);  // (+1 for null terminator)
                 if (con_state->header_len > sizeof(con_state->headers) - 1) {
                     DEBUG_printf("Too much header data %d\n", con_state->header_len);
                     return tcp_close_client_connection(con_state, pcb, ERR_CLSD);
@@ -112,8 +106,8 @@ err_t tcp_server_recv(void *arg, struct tcp_pcb *pcb, struct pbuf *p, err_t err)
             }
 
             // Send the body to the client
-            if (con_state->result_len) {
-                err = tcp_write(pcb, con_state->result, con_state->result_len, 0);
+            if (con_state->result.length()) {
+                err = tcp_write(pcb, con_state->result.c_str(), con_state->result.length()+1, 0); // (+1 for null terminator)
                 if (err != ERR_OK) {
                     DEBUG_printf("failed to write result data %d\n", err);
                     return tcp_close_client_connection(con_state, pcb, err);
