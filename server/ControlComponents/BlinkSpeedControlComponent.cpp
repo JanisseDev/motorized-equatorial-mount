@@ -9,8 +9,12 @@ private:
     static std::string generate_content(std::vector<std::string> args) {
         return "\
 <div class='cell'>\
-    <p>Blink speed is "+args[0]+"ms</p>\
-    <a href='?blinkSpeed="+args[1]+"'>Switch to "+args[1]+"ms</a>\
+    <p>Blink speed</p>\
+    <div class='switch'>\
+        <a "+args[0]+" href='?blinkSpeed=100'>100ms</a>\
+        <a "+args[1]+" href='?blinkSpeed=250'>250ms</a>\
+        <a "+args[2]+" href='?blinkSpeed=500'>500ms</a>\
+    </div>\
 </div>";
     }
 
@@ -28,10 +32,11 @@ public:
     {   
         // Generate result
         std::vector<std::string> args;
-        if (blinkSpeed == 100) {
-            args = {std::to_string(blinkSpeed), "500"};
-        } else {
-            args = {std::to_string(blinkSpeed), "100"};
+        switch (blinkSpeed) {
+            case 100: args = {"class='selected'", "", ""}; break;
+            case 250: args = {"", "class='selected'", ""}; break;
+            case 500: args = {"", "", "class='selected'"}; break;
+            default: args = {"", "", ""}; break;
         }
 
         return generate_content(args);

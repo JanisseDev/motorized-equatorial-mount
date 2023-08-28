@@ -9,8 +9,11 @@ private:
     static std::string generate_content(std::vector<std::string> args) {
         return "\
 <div class='cell'>\
-    <p>"+args[0]+" LED</p>\
-    <a href='?blinking="+args[1]+"'>Switch to "+args[2]+" LED</a>\
+    <p>LED</p>\
+    <div class='switch'>\
+        <a "+args[0]+" href='?blinking=0'>Fix</a>\
+        <a "+args[1]+" href='?blinking=1'>Blink</a>\
+    </div>\
 </div>";
     }
 
@@ -29,9 +32,9 @@ public:
         // Generate result
         std::vector<std::string> args;
         if (blinking) {
-            args = {"Blinking", "0", "fixed"};
+            args = {"", "class='selected'"};
         } else {
-            args = {"Fixed", "1", "blinking"};
+            args = {"class='selected'", ""};
         }
         
         return generate_content(args);

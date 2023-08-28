@@ -34,12 +34,11 @@ int main() {
     while(!state->complete) {
         // Do your usual pico stuff here
         if(blinking) {
-            cyw43_gpio_set(&cyw43_state, 0, true);
-            sleep_ms(blinkSpeed);
             cyw43_gpio_set(&cyw43_state, 0, false);
             sleep_ms(blinkSpeed);
-        } else {
             cyw43_gpio_set(&cyw43_state, 0, true);
+            sleep_ms(blinkSpeed);
+        } else {
             sleep_ms(10);
         }
     }
