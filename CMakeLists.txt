@@ -24,6 +24,8 @@ add_executable(${PROJECT_NAME}
         server/webpage.cpp
         server/ControlComponents/BlinkingControlComponent.cpp
         server/ControlComponents/BlinkSpeedControlComponent.cpp
+        server/ControlComponents/MotorModeControlComponent.cpp
+        server/ControlComponents/MotorSpeedControlComponent.cpp
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
