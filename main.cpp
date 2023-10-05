@@ -13,7 +13,7 @@
 volatile bool blinking = false;
 volatile uint32_t blinkSpeed = 100;
 volatile MotorMode motorMode = MotorMode::Stopped;
-volatile uint32_t motorSpeed = 1200;
+volatile uint32_t motorSpeed = 501;
 
 // Init Motor constants
 const uint stepCount = 8;

@@ -11,7 +11,7 @@ private:
 <div class='cell'>\
     <p>Motor speed</p>\
     <form>\
-        <input type='number' name='motorSpeed' style='width: 100px;' value='"+std::to_string(currentValue)+"' min='10' max='10000'/>\
+        <input type='number' name='motorSpeed' style='width: 100px;' value='"+std::to_string(currentValue)+"' min='8' max='10000'/>\
         <input type='submit' value='Send'/>\
     </form>\
 </div>";
